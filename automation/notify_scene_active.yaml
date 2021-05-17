@@ -4,8 +4,6 @@ blueprint:
   domain: automation
   input:
     scene:
-    title:
-    message:
 
 trigger:
   platform: event
@@ -19,5 +17,5 @@ trigger:
 action:
   service: notify.notify
     data:
-      title: !input title
-      message: !input message
+      title: 'Title'
+      message: 'Message'
