@@ -4,6 +4,13 @@ blueprint:
   domain: automation
   input:
     scene:
+      name: 'Scene'
+      description: 'The scene to send a notification about.'
+      selector:
+        entity:
+          domain: scene
+    test:
+      name: 'Test'
 
 trigger:
   platform: event
@@ -15,7 +22,7 @@ trigger:
       entity_id: !input scene
 
 action:
-  service: notify.notify
+  - service: notify.notify
     data:
       title: 'Title'
       message: 'Message'
