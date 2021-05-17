@@ -5,16 +5,20 @@ blueprint:
   input:
     scene:
       name: 'Scene'
-      description: 'The scene to send a notification about.'
+      description: 'The scene to send a notification about when activated.'
       selector:
         entity:
           domain: scene
-    test:
-      name: 'Test'
+    title:
+      name: 'Title'
+      description: 'The title of the notifcation.'
+    message:
+      name: 'Message'
+      description: 'The message of the notifcation.'
 
 trigger:
   platform: event
-  event_type: call_seervice
+  event_type: call_service
   event_data: 
     domain: scene
     service: turn_on
@@ -24,5 +28,5 @@ trigger:
 action:
   - service: notify.notify
     data:
-      title: 'Title'
-      message: 'Message'
+      title: !input title
+      message: !input message
