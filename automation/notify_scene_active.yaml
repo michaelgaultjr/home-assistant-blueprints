@@ -1,0 +1,23 @@
+blueprint:
+  name: Notification on Scene Activated
+  description: Send a Notification to people when a Scene is activated.
+  domain: automation
+  input:
+    scene:
+    title:
+    message:
+
+trigger:
+  platform: event
+  event_type: call_seervice
+  event_data: 
+    domain: scene
+    service: turn_on
+    service_data:
+      entity_id: !input scene
+
+action:
+  service: notify.notify
+    data:
+      title: !input title
+      message: !input message
