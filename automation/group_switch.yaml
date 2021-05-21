@@ -1,0 +1,30 @@
+blueprint:
+  name: Switch for Group
+  description: Use a switch to control an entire group.
+  domain: automation
+  input:
+    switch:
+      name: 'Switch'
+      description: 'The switch to control the group.'
+      selector:
+        entity:
+          domain: switch
+    group:
+      name: 'Group'
+      description: 'The group to be controlled.'
+      selector:
+        entity:
+          domain: group
+
+trigger:
+  platform: state
+  entity_id: !input switch
+
+action:
+  service: |
+      {% if trigger.to_state.state == 'on' %}
+        switch.turn_on
+      {% else %}
+        switch.turn_off
+      {% endif %}
+  entity_id: !input group
